@@ -49,6 +49,7 @@ public class girisController {
         }
     }
 
+
     private boolean ogrenciGiris(int ogrNo, String pass){
         String sqlOgrAraSorgu = "SELECT parola FROM ogrenciler WHERE ogrenciNo="+ogrNo;
         String tmp = null;
