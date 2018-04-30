@@ -1,6 +1,7 @@
-package otomasyon;
+package Controller;
 
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -8,10 +9,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import java.io.IOException;
-import java.sql.*;
 
-public class girisController {
+import java.io.IOException;
+import java.net.URL;
+import java.sql.*;
+import java.util.ResourceBundle;
+
+public class GirisController implements Initializable{
 
     private static String urlDatabase = "jdbc:sqlite:bilgiler.sqlite";
     public TextField tf_username;
@@ -41,7 +45,13 @@ public class girisController {
         if (answer){
             bt_giris.getScene().getWindow().hide();
             Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/otomasyon/anaEkran.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/FXML/anaEkran.fxml"));
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/anaEkran.fxml"));
+            loader.load();
+            AnaController anaController = loader.getController();
+            anaController.setId(uname);
+
             stage.setScene(new Scene(root));
             stage.show();
         }else {
@@ -88,4 +98,11 @@ public class girisController {
 
         return pass.equals(tmp);
     }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
+
+
 }
